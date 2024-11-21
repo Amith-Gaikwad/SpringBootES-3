@@ -25,5 +25,29 @@ public class ProductService {
     public List<Product> searchProductByName(String name){
         return productRepo.findBypname(name);
     }
+    public List<Product> searchProductByCategory(String category){
+        return productRepo.findByCategory(category);
+    }
+
+
+
+
+
+    public List<Product> searchByField(String field, String value){
+        return productRepo.searchByField(field, value);
+    }
+
+
+
+
+    public List<Product> searchByAdvanceQuery(String field, String value, Double price){
+        System.out.println("The Price here $$$$$$$$$$$$    "+price+"      $$$$$$$$");
+        if(price != null){
+            return productRepo.searchByCustomQuery(field, value, price);
+        }
+        else{
+            return productRepo.searchByField(field, value);
+        }
+    }
 
 }
